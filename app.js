@@ -1,7 +1,9 @@
 const dotenv = require('dotenv');
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const app = express();
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+
 
 dotenv.config({path:'./.env'});
 
@@ -10,6 +12,7 @@ const PORT = process.env.PORT || 8000;
 // Databse connectio
 require('./db/conn');
 
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
