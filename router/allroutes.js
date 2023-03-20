@@ -152,7 +152,7 @@ router.get('/getuserInfo', authenticate, (req,res) =>{
 
 router.get('/logout', (req,res) =>{
     console.log("Hello my logout");
-    res.clearCookie('rwtoken', { path:'/' });
+    res.clearCookie('rwtoken');
     res.status(200).send("User logout");
 });
 
