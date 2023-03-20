@@ -25,6 +25,8 @@ app.use(cors({
         'Authorization'
     ]
 }));
+
+
 app.use(express.json());
 app.use(cookieParser());
 
