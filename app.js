@@ -14,6 +14,7 @@ require('./db/conn');
 
 app.use(cors({
     origin: [
+        'https://rwappbackend.onrender.com',
         'http://localhost:3000',
         'https://realweatherapp.netlify.app'
     ],
