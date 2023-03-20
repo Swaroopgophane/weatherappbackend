@@ -12,7 +12,19 @@ const PORT = process.env.PORT || 8000;
 // Databse connectio
 require('./db/conn');
 
-app.use(cors());
+app.use(cors({
+    origin: [
+        'http://localhost:3000',
+        'https://realweatherapp.netlify.app'
+    ],
+    credentials: true,
+    methods: ['GET','POST','OPTIONS'],
+    allowedHeaders:[
+        'Access-Control-Allow-Origin',
+        'Content-Type',
+        'Authorization'
+    ]
+}));
 app.use(express.json());
 app.use(cookieParser());
 

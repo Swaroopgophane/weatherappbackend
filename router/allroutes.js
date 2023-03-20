@@ -82,9 +82,10 @@ router.post('/signin', async (req,res) =>{
     
                 res.cookie("rwtoken",token,{
                     expires:new Date(Date.now() + 2592000000),
+                    secure: env.ENVIRONMENT === 'LIVE',
+                    sameSite: env.ENVIRONMENT === 'LIVE' ? 'none' : 'lax',
                     httpOnly: true,
-                    secure:true,
-                    domain:"https://realweatherapp.netlify.app/"
+    
                 });
     
                 res.json({message:"Login successfully"});
