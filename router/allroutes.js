@@ -78,8 +78,6 @@ router.post('/signin', async (req,res) =>{
             }else{
     
                 const token = await userLogin.generateToken();
-                
-                console.log(token);
     
                 res.cookie("rwtoken",token,{
                     httpOnly: true,
