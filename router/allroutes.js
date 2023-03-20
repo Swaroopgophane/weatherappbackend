@@ -84,7 +84,7 @@ router.post('/signin', async (req,res) =>{
                     expires:new Date(Date.now() + 2592000000),
                     httpOnly: true,
                     secure:true,
-                    sameSite:'none'
+                    domain:"https://realweatherapp.netlify.app/"
                 });
     
                 res.json({message:"Login successfully"});
