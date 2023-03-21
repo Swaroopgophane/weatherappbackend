@@ -3,6 +3,11 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const authenticate = require('../middleware/authenticate');
 
+if (typeof localStorage === "undefined" || localStorage === null) {
+    var LocalStorage = require('node-localstorage').LocalStorage;
+    localStorage = new LocalStorage('./scratch');
+  }
+
 
 require('../db/conn');
 const User = require('../model/userSchema');
@@ -78,14 +83,16 @@ router.post('/signin', async (req,res) =>{
             }else{
     
                 const token = await userLogin.generateToken();
+
+                localStorage.setItem('MYRWTOKEN',token);
     
-                res.cookie("rwtoken",token,{
-                    httpOnly: true,
-                    sameSite:'none',
-                    secure:true,
-                    expires:new Date(Date.now() + 2592000000)
+                // res.cookie("rwtoken",token,{
+                //     httpOnly: true,
+                //     sameSite:'none',
+                //     secure:true,
+                //     expires:new Date(Date.now() + 2592000000)
     
-                });
+                // });
     
                 res.json({message:"Login successfully"});
             }
@@ -152,7 +159,8 @@ router.get('/getuserInfo', authenticate, (req,res) =>{
 
 router.get('/logout', (req,res) =>{
     console.log("Hello my logout");
-    res.clearCookie('rwtoken',{ path:'/' });
+    localStorage.removeItem('MYRWTOKEN');
+    // res.clearCookie('rwtoken',{ path:'/' });
     res.status(200).send("User logout");
 });
 
