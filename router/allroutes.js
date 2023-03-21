@@ -83,7 +83,8 @@ router.post('/signin', async (req,res) =>{
                     httpOnly: true,
                     sameSite:'none',
                     secure:true,
-                    domain:'.onrender.com',
+                    domain:'rwappbackend.onrender.com',
+                    path:'/',
                     expires:new Date(Date.now() + 2592000000)
     
                 });
