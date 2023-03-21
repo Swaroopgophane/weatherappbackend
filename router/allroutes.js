@@ -83,7 +83,7 @@ router.post('/signin', async (req,res) =>{
                     httpOnly: true,
                     sameSite:'none',
                     secure:true,
-                    domain:'.netlify.app',
+                    domain:'.onrender.com',
                     expires:new Date(Date.now() + 2592000000)
     
                 });
